@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>OpenWrt - LuCI</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+	<meta name="format-detection" content="telephone=no, email=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="x5-page-mode" content="app">
+	<meta name="browsermode" content="application">
+	<meta name="theme-color" content="#0099CC">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="msapplication-TileColor" content="#0099CC">
+
+	<meta name="application-name" content="OpenWrt - LuCI">
+	<meta name="apple-mobile-web-app-title" content="OpenWrt - LuCI">
+	<meta name="msapplication-TileImage" content="/luci-static/opentomcat/logo.png"/>
+	<link rel="icon" href="/luci-static/opentomcat/logo.png" sizes="144x144">
+	<link rel="apple-touch-icon-precomposed" href="/luci-static/opentomcat/logo.png" sizes="144x144">
+
+	<link rel="stylesheet" href="/luci-static/opentomcat/css/style.css">
+	<link rel="shortcut icon" href="/luci-static/opentomcat/favicon.ico">
+	<script src="/luci-static/resources/xhr.js"></script>
+        <script src="/luci-static/opentomcat/js/jquery.min.js"></script>
+</head>
+<body class="lang_zh-cn ">
+<header>
+	<div class="container">
+		<span class="showSide"></span>
+		<a class="brand" href="#">OpenWrt</a>
+		<div class="pull-right">
+			
+			<span id="xhr_poll_status" style="display:none" onclick="XHR.running() ? XHR.halt() : XHR.run()">
+				<span class="label success" id="xhr_poll_status_on"><span class="mobile-hide">èªå¨å·æ°</span> å¼</span>
+				<span class="label" id="xhr_poll_status_off" style="display:none"><span class="mobile-hide">èªå¨å·æ°</span> å³</span>
+			</span>
+		</div>
+	</div>
+</header>
+<div class="main">
+	<div style="" class="loading"><span><div class="loading-img"></div>Loading...</span></div>
+	<div class="main-left">
+		
+	</div>
+	<div class="main-right">
+		<div class="darkMask"></div>
+		<div id="maincontent">
+			<div class="container"><noscript>
+					<div class="alert-message warning">
+						<h4>éè¦ JavaScriptï¼</h4>
+						<p>å¿é¡»å¼å¯æµè§å¨ç JavaScript æ¯æï¼å¦å LuCI æ æ³æ­£å¸¸å·¥ä½ã</p>
+					</div>
+				</noscript>
+
+				
+
+
+
+<form method="post" action="/"><div class="cbi-map">
+		<h2 name="content">éè¦ææ</h2>
+		<div class="cbi-map-descr">
+			è¯·è¾å¥ç¨æ·ååå¯ç ã
+		</div>
+		<fieldset class="cbi-section"><fieldset class="cbi-section-node">
+			<div class="cbi-value">
+				<label class="cbi-value-title">ç¨æ·å</label>
+				<div class="cbi-value-field">
+					<input class="cbi-input-user" type="text" name="luci_username" value="root" />
+				</div>
+			</div>
+			<div class="cbi-value cbi-value-last">
+				<label class="cbi-value-title">å¯ç </label>
+				<div class="cbi-value-field">
+					<input class="cbi-input-password" type="password" name="luci_password" />
+				</div>
+			</div>
+		</fieldset></fieldset>
+	</div>
+
+	<div>
+		<input type="submit" value="ç»å½" class="cbi-button cbi-button-apply" />
+		<input type="reset" value="å¤ä½" class="cbi-button cbi-button-reset" />
+	</div>
+</form>
+<script type="text/javascript">//<![CDATA[
+	var input = document.getElementsByName('luci_password')[0];
+	if (input)
+		input.focus();
+//]]></script>
+
+
+
+
+                </div>
+                <footer class="mobile-hide">
+                    <a href="https://github.com/openwrt/luci">Powered by LuCI Master (git-21.035.34289-13f96d1)</a> /
+                    OpenWrt  R20.9.15
+                    
+                </footer>
+            </div>
+        </div>
+
+    <script>
+        // thanks for Jo-Philipp Wich <jow@openwrt.org>
+        var luciLocation = [];
+    </script>
+    <script src="/luci-static/opentomcat/js/script.js"></script>
+</body>
+</html>
+
