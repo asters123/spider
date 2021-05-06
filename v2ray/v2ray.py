@@ -9,12 +9,14 @@ from time import sleep
 #post(data是一个字典)
 if __name__ == "__main__":
 #=====================================获取邮箱部分=========================================================
-    url_query_mail = "https://www.linshiyouxiang.net/api/v1/mailbox/keepalive?mailbox="
+    session_linshi_mail = requests.Session()
+    session_linshi_mail.get("https://www.linshiyouxiang.net")
+    url_query_mail = "https://www.linshiyouxiang.net/api/v1/mailbox/keepalive"
     headers = {
-        "User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36"
-    }
-    url_query_mail_text = requests.get(url=url_query_mail,headers=headers).text
-
+        'referer':'https://linshiyouxiang.net/',
+        'user-agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36',
+            }
+    url_query_mail_text = session_linshi_mail.get(url=url_query_mail,headers=headers).text
     re_mail = 'mailbox":".*?","'
     mail_qianzhui = re.findall(re_mail,url_query_mail_text,re.S)[0][10:-3]
     print('前缀为：'+mail_qianzhui)
