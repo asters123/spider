@@ -18,7 +18,17 @@ if __name__ == "__main__":
     token_text = session.get(url=url_restart_firewall,headers=headers).text
     re_token = 'name="token" value=".*?" />'
     token = re.findall(re_token,token_text,re.S)[0][20:-4]
-    print(token)
+    data_restart_firewall = {
+            'token':token,
+            'cbi.submit':'1',
+            'cbid.firewall.1._custom':''
+            }
+    session.post(url=url_restart_firewall,headers=headers,data=data_restart_firewall)
+    
+
+#"# be executed with each firewall (re-)start.\n\n            # Internal uci firewall chains are flushed and recreated on reload, so\n            # put custom rules into the root chains e.g. INPUT or FORWARD or into the\n            # special user chains, e.g. input_wan_rule or postrouting_lan_rule.\n            iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53\n            iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53"
+
+
 #token: 661abd68fd77afc1fc3c18b1d45ee552
 #cbi.submit: 1
 #cbid.firewall.1._custom: # This file is interpreted as shell script.
