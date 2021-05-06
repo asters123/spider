@@ -1,5 +1,6 @@
 #!/bin/python3
 
+import re
 import requests
 #User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36
 if __name__ == "__main__":
@@ -13,7 +14,11 @@ if __name__ == "__main__":
             }
     session = requests.Session()
     session.post(url=url,headers=headers,data=data_login)
-    session.get()
+    url_restart_firewall = 'http://10.0.0.1/cgi-bin/luci/admin/network/firewall/custom'
+    token_text = session.get(url=url_restart_firewall,headers=headers).text
+    re_token = 'name="token" value=".*?" />'
+    token = re.findall(re_token,token_text,re.S)[0][20:-4]
+    print(token)
 #token: 661abd68fd77afc1fc3c18b1d45ee552
 #cbi.submit: 1
 #cbid.firewall.1._custom: # This file is interpreted as shell script.
