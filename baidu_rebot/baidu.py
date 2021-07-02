@@ -1,40 +1,87 @@
 #!/bin/python3
-from os import write
-from baidu_config import *
+
 import requests
-import re
+import execjs
+import time
+import random
+
+#========================get_QR_code========================================
+#目的:获得sign
+#====execjs使用方法=====
+#实例化一个node对象
+node = execjs.get()
+#js源文件编译
+compile_get_gid = node.compile(open('./js/get_gid.js',encoding='utf-8').read())
+#执行js
+gid = compile_get_gid.eval('get_gid()')
+print(gid)
+#====execjs结束=====
 
 
+tt = int(time.time()*1000)
+print(tt)
+
+callback = "tangram_guid_"+str(tt-random.randint(2000,7000))
+print(callback)
+
+_ = tt+random.randint(7,13)
+print(_)
+lp = "pc"
+qrloginfrom = "pc"
+apiver = "v3"
+tpl = "netdisk"
 
 
-cookie = 'BDUSS='+BDUSS+'; STOKEN='+STOKEN
-
-headers = {
-
-    'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'Accept-Encoding':'gzip, deflate',
-    'Accept-Language':'zh-CN,zh;q=0.9',
-    'Cache-Control':'no-cache',
-    'Connection':'keep-alive',
-#    'Cookie':cookie,
-    'Cookie':cookie,
-    'Host':'pan.baidu.com',
-    'Pragma':'no-cache',
-    'Upgrade-Insecure-Requests':'1',
-    'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Safari/537.36'
-        }
-
-url = 'https://pan.baidu.com/api/list'
-
-
-
-res = requests.get(url=url,headers=headers)
-res.encoding = 'utf-8'
-
-re_file_name = '"server_filename":".*?","'
-file_name_all = re.findall(re_file_name,res.text,re.S)
-i = 0
-for a in file_name_all:
-    file_name = file_name_all[i][19:-3]
-    i = i+1
-    print((file_name))
+    #
+    ##lp:固定
+    #lp: pc
+    ##qrloginfrom固定
+    #qrloginfrom: pc
+    #gid: js生成(已解决)
+    #callback: tangram_guid_1624150981823
+    ##apiver固定
+    #apiver: v3
+    ##tt时间戳
+    #tt: 1624150983553
+    ##tpl固定
+    #tpl: netdisk
+    ##也是时间戳 比tt大
+    #_: 1624150983561
+    #
+    #
+    ##    lp: pc
+    ##    qrloginfrom: pc
+    ##    gid: EB93098-737C-4E4A-9953-86B54AAABF2A
+    ##    callback: tangram_guid_1624152442228
+    ##    apiver: v3
+    ##    tt: 1624152447275
+    ##    tpl: netdisk
+    ##    _: 1624152447286
+    #
+    #
+    #
+    #
+    #BAIDUID=""
+    #HOSUPPORT=""
+    #HOSUPPORT_BFESS=""
+    #pplogid=""
+    #pplogid_BFESS=""
+    #
+    #get_qr_code_cookie = "BAIDUID="+BAIDUID+"; HOSUPPORT="+HOSUPPORT+"; HOSUPPORT_BFESS="+HOSUPPORT_BFESS+"; pplogid="+pplogid+"; pplogid_BFESS="+pplogid_BFESS
+    #print(get_qr_code_cookie)
+    #
+    #
+    ##========================QR_code========================================
+    #sign = ""
+    #qr_code_url = "https://passport.baidu.com/v2/api/qrcode?sign="+sign+"&lp=pc&qrloginfrom=pc"
+    #print("=============================================================================")
+    #print(qr_code_url)
+    #print("=============================================================================")
+    #
+    #
+    #
+    #
+    ##Cookie
+    #qr_code_cookie = "BAIDUID="+BAIDUID+"; HOSUPPORT="+HOSUPPORT+"; HOSUPPORT_BFESS="+HOSUPPORT_BFESS+"; pplogid="+pplogid+"; pplogid_BFESS="+pplogid_BFESS
+    #print("qr_code的cookie是====="+qr_code_cookie)
+    #
